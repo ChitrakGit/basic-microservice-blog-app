@@ -1,0 +1,64 @@
+#build an image
+	> docker build -t docker_id/projectName:tags .
+	the . is imp
+	docker id means chitrakdocker 
+
+# run a node port in my browser
+	> docker run -p -it docPort:myPCPort image_id
+	
+# run a sh of a image	
+	> docker run -it image_id sh
+
+# sh exec 
+	> docker exec -it e9eb26dd28fb sh
+	
+# force remove containers
+	> docker -rm -f container_id 
+
+# delete all images 
+	> docker image prune -a
+	
+# run and take input 
+	> docker run -it sampleweb/node
+	
+# to push in docker hub
+	> docker push image_name
+	
+	delete dangling images
+	> docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+	
+	delete image:
+	> docker rmi -f IMAGE [IMAGE...]
+	
+Kubernetes Commands:
+	> kubectl apply -f yamlFile.yaml
+	
+	> kubectl apply -f .  // apply all yaml file
+	
+	> kubectl logs posts-depl-59dc5d75fc-459xp
+	
+	> kubectl describe deployment posts-depl
+	
+	> kubectl delete deployment posts-depl
+	
+	> kubectl rollout restart deployment [deployment_name]
+	
+	***** very important ****** if you have to run a latest image you hava to push the image into docker hub . otherwise it not gonna work
+	if k8s find a untag image it start to see the docker hub not local
+	
+	> kubectl get services
+	
+	 kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
+	
+	
+Services:
+	1. cluster ip -> set up and easy to remember URL to access a pod. Only exposes pods tn the cluster.
+	2. NodePort -> makes a pod accessible from the outside of the cluster.only use in dev env.
+	3. Load Balenser -> Makes a pod accessible from outside the cluster. This is right way to exposes a pod out side of the world.
+	4. External Name -> redirects an incluster request to a CNAME URL....
+	
+	to access ingress nginx have to add a line in host file: C:\Windows\System32\drivers\etc
+	127.0.0.1 posts.com
+	or
+	127.0.0.1 domain name
+	
